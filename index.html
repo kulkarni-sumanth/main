@@ -5,37 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="./styles/styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </head>
 <body>
-    <!-- common part -->
-    <ul class="top-nav">
-        <li class="current-date">14 Mar 2017</li>
-        <li>
-            <img href="" alt="logo">
-        </li>
-        <li>Vijay Prakash</li>
-        <li>
-            <img href="" alt="profile picture">
-        </li>
-    </ul>
-    <ul class="top-sub-nav">
-        <li>HOME</li>
-        <li>CATEGORIES</li>
-        <li>USERS</li>
-    </ul>
-    <ul class="left-nav">
-        <li>
-            <img href="" alt="logo">
-        </li>
-        <li>
-            <span><img href="" alt="icon"></span>
-            <span>Forum</span>
-        </li>
-    </ul>
+    <div class="page-container">
+        <!-- common part -->
+        <ul class="left-nav nav">
+            <li class="list-item logo">
+                <img href="" alt="logo">
+            </li>
+            <li class="list-item">
+                <span><img href="" alt="icon"></span>
+                <span>Forum</span>
+            </li>
+        </ul>
+        <div class="top-navs">
+            <ul class="top-nav nav">
+                <li class="current-date list-item">14 Mar 2017</li>
+                <li>
+                    <img href="" alt="logo">
+                </li>
+                <li class="list-item">Vijay Prakash</li>
+                <li class="list-item">
+                    <img href="" alt="profile picture">
+                </li>
+            </ul>
+            <ul class="top-sub-nav nav">
+                <li class="list-item">HOME</li>
+                <li class="list-item">CATEGORIES</li>
+                <li class="list-item">USERS</li>
+            </ul>
+        </div>
 
-    <!-- main content home page -->
-
-
-
+        <!-- main content home page -->
+        <div class="filter-section">
+            <div class="search">
+                <p>Keywords</p>
+                <input type="text" placeholder="Search">
+            </div>
+            <div class="dropdown">
+                <p>Category</p>
+                 <!--dropdown  -->
+                <!-- must load from database -->
+                <button class="dropdown-button" value="Recent1">Recent</button>
+                  <ul class="dropdown-content">
+                    <li value="All">All</li>
+                    <li>Asp.Net</li>
+                    <li>Java</li>
+                    <li>Node js</li>
+                    <li>Dev ops</li>
+                    <li>Ux design</li>                    
+                  </ul>
+            </div>
+            <div class="dropdown">
+                <p>Show</p>
+                <!-- dropdown -->
+                <button class="dropdown-button" value="Recent2">Recent</button>
+                <ul class="dropdown-content">
+                    <li>All</li>
+                    <li>My Questions</li>
+                    <li>My Participation</li>
+                    <li>Hot</li>
+                    <li>Solved</li>  
+                    <li>Unsolved</li> 
+                    <li>Recent</li>                                     
+                  </ul>
+            </div>
+            <div class="dropdown">
+                <p>Sort by</p>
+                <!-- dropdown -->
+                <button class="dropdown-button" value="Recent3">Recent</button>
+                <ul class="dropdown-content">
+                    <li>All</li>
+                    <li>Recent</li>
+                    <li>Last 10 Days</li>
+                    <li>Last 30 Days</li>                                    
+                  </ul>
+            </div>
+            <div>
+                <p><img href="" alt="logo"> Reset</p>
+            </div>
+            <div class="add-question">
+                + Question
+            </div>
+        </div>
+    </div>
+<script src="./index.js"></script>
 </body>
 </html>

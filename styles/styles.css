@@ -2,7 +2,149 @@
     box-sizing: border-box;
 }
 
-body {
+body, ul, p, li {
     margin: 0px;
     padding: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-container {
+    /* min-width: 1280px; */
+    min-width: 1300px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    font-size: 12px;
+}
+
+.top-navs {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-nav {
+    justify-content: flex-end;
+    height: 49px;
+    gap: 16px;
+    padding-right: 16px;
+    background-color: #76618B;
+}
+
+.top-sub-nav {
+    background-color: white;
+    height: 40.5px;
+    padding-left: 20px;
+    gap: 30px;
+    font-weight: 500;
+    color: #AAAAAA;
+}
+
+.left-nav {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    width: 118px;
+    color: white;
+    background-color:#3E4249;
+    height: 100vh;
+}
+
+.left-nav .list-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    width: 100%;
+    background-color: #505661;
+}
+
+.left-nav .logo {
+    height: 49px;
+    background-color: #524361;
+}
+
+.filter-section {
+    display: flex;
+    height: 110px;
+    gap: 25px;
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 20px;
+    align-items: center;
+    background-color: #F8F8F9;
+    border-top: 1px solid rgb(191, 187, 187);
+    border-bottom: 1px solid rgb(191, 187, 187);
+}
+
+.search input {
+    height: 36px;
+    width: 300px;
+    padding-left: 10px;
+    border-radius: 3px;
+    border: 1px solid rgb(216, 215, 215);
+}
+
+.dropdown, .search {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dropdown-button {
+    width: 180px;
+    height: 36px;
+    border-radius: 3px;
+    font-size: 12.5px;
+    text-align: left;
+    background-color: white;
+    border: 1px solid rgb(216, 215, 215);
+    position: relative;
+}
+
+.dropdown-button::after {
+    content: '\25BC';
+    transform: scale(1,0.5);
+    position: absolute;
+    color: grey;
+    right: 8px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 54px;
+    width: 180px;
+    border-radius: 3px;
+    padding-top: 10px;
+    box-shadow: 0px 2px 10px -2px black;
+    list-style-type: none;
+    background-color: #FAFAFA;
+}
+
+.dropdown-content li {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.dropdown-content li:hover {
+    background-color: #E2E6E8;
+}
+
+.add-question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #76618B;
+    height: 37px;
+    width: 108px;
+    border-radius: 5px;
+    color: white;
 }
