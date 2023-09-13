@@ -1,4 +1,6 @@
-﻿namespace Question_and_Answer_Forum.Data
+﻿using Microsoft.VisualBasic;
+
+namespace Question_and_Answer_Forum.Data
 {
     public class Answer
     {
@@ -11,3 +13,5 @@
         public int UserId { get; set; }
     }
 }
+
+//Here is MyGroupCollectionAttribute answer
