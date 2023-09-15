@@ -14,3 +14,5 @@ namespace CorporateQnA.Data
         public int UserId { get; set; }
     }
 }
+
+//addes an jdnu
