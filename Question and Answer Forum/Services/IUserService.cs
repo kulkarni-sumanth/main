@@ -1,6 +1,7 @@
-﻿namespace Question_and_Answer_Forum.Services
+﻿namespace CorporateQnA.Services
 {
     public interface IUserService
     {
+
     }
 }

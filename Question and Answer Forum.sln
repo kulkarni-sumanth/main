@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Question and Answer Forum", "Question and Answer Forum\Question and Answer Forum.csproj", "{97FC04C0-0B6A-4CF8-9C37-96D72A08ADF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Question and Answer Forum", "Question and Answer Forum\Question and Answer Forum.csproj", "{97FC04C0-0B6A-4CF8-9C37-96D72A08ADF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAF.M", "mod\QAF.M.csproj", "{930FBC31-E48B-4240-899C-12B62238222D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{97FC04C0-0B6A-4CF8-9C37-96D72A08ADF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97FC04C0-0B6A-4CF8-9C37-96D72A08ADF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97FC04C0-0B6A-4CF8-9C37-96D72A08ADF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{930FBC31-E48B-4240-899C-12B62238222D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{930FBC31-E48B-4240-899C-12B62238222D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{930FBC31-E48B-4240-899C-12B62238222D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{930FBC31-E48B-4240-899C-12B62238222D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

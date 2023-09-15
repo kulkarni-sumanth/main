@@ -1,4 +1,4 @@
-﻿namespace Question_and_Answer_Forum.Data
+﻿namespace CorporateQnA.Data
 {
     public class Report
     {

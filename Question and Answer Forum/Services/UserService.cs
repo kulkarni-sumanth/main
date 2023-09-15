@@ -1,6 +1,6 @@
-﻿using Question_and_Answer_Forum.DB;
+﻿using CorporateQnA.DB;
 
-namespace Question_and_Answer_Forum.Services
+namespace CorporateQnA.Services
 {
     public class UserService : IUserService
     {
