@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Question_and_Answer_Forum.Models;
 using Question_and_Answer_Forum.Services;
 
-namespace Question_and_Answer_Forum.App
+namespace Question_and_Answer_Forum.App.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -12,7 +12,7 @@ namespace Question_and_Answer_Forum.App
         public IAnswerService AnswerService { get; set; }
         public AnswerController(IAnswerService answerService)
         {
-            this.AnswerService = answerService;
+            AnswerService = answerService;
         }
 
         [HttpPost, Route("Like/{answerId}")]
@@ -48,7 +48,7 @@ namespace Question_and_Answer_Forum.App
         [HttpGet, Route("GetAnswersByQuestionId/{questionId}")]
         public async Task<ActionResult<List<AnswerModel>>> GetAnswersByQuestionId(Guid questionId)
         {
-           List<AnswerModel> answers = await AnswerService.GetAnswersByQuestionIdAsync(questionId);
+            List<AnswerModel> answers = await AnswerService.GetAnswersByQuestionIdAsync(questionId);
             return Ok(answers);
         }
     }

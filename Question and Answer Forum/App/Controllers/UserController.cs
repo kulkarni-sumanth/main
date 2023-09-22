@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Question_and_Answer_Forum.Models;
 
-namespace Question_and_Answer_Forum.App
+namespace Question_and_Answer_Forum.App.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -11,7 +11,7 @@ namespace Question_and_Answer_Forum.App
         public IUserService UserService { get; set; }
         public UserController(IUserService userService)
         {
-            this.UserService = userService;
+            UserService = userService;
         }
 
         [HttpGet, Route("GetUserInfo/{userId}")]

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Question_and_Answer_Forum.Services;
 
-namespace Question_and_Answer_Forum.App
+namespace Question_and_Answer_Forum.App.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -12,7 +12,7 @@ namespace Question_and_Answer_Forum.App
         public IReportService ReportService { get; set; }
         public ReportController(IReportService reportService)
         {
-            this.ReportService = reportService;
+            ReportService = reportService;
         }
 
         [HttpPost, Route("ReportUser")]

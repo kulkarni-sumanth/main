@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Question_and_Answer_Forum.Models;
 using Question_and_Answer_Forum.Services;
 
-namespace Question_and_Answer_Forum.App
+namespace Question_and_Answer_Forum.App.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -12,10 +12,10 @@ namespace Question_and_Answer_Forum.App
         public ICategoryService CategoryService { get; set; }
         public CategoryController(ICategoryService categoryService)
         {
-            this.CategoryService = categoryService;
+            CategoryService = categoryService;
         }
 
-        [HttpPost,Route("AddCategory")]
+        [HttpPost, Route("AddCategory")]
         public async Task AddCategory([FromBody] Category category)
         {
             await CategoryService.AddCategoryAsync(category);
@@ -28,14 +28,14 @@ namespace Question_and_Answer_Forum.App
             return Ok(category);
         }
 
-        [HttpGet, Route("FilterCategories/{show}")]
+        [HttpGet, Route("FilterCategories/{filterBy}")]
         public async Task<ActionResult<List<CategoryModel>>> FilterCategories(string filterBy)
         {
             List<CategoryModel> categories = await CategoryService.FilterCategoriesAsync(filterBy);
             return Ok(categories);
         }
 
-        [HttpGet, Route("SearchCategoriesByKeyword/{show}/{keyword}")]
+        [HttpGet, Route("SearchCategoriesByKeyword/{filterBy}/{keyword}")]
         public async Task<ActionResult<List<CategoryModel>>> SearchCategoriesByKeyword(string filterBy, string keyword)
         {
             List<CategoryModel> categories = await CategoryService.SearchCategoriesByKeywordAsync(filterBy, keyword);

@@ -2,7 +2,7 @@
 using Question_and_Answer_Forum.Data;
 using Question_and_Answer_Forum.Models;
 
-namespace Question_and_Answer_Forum.Profiles
+namespace Question_and_Answer_Forum.Services.Profiles
 {
     public class UserProfile : Profile
     {

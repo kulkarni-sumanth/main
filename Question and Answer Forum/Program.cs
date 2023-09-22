@@ -1,8 +1,8 @@
-using Question_and_Answer_Forum.DB;
 using Question_and_Answer_Forum.Services;
 //using Question_and_Answer_Forum.DB;
-using Question_and_Answer_Forum.Profiles;
 using AutoMapper;
+using Question_and_Answer_Forum.Services.DbServices;
+using Question_and_Answer_Forum.Services.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 

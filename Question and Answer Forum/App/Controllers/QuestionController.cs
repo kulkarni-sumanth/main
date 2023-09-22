@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Question_and_Answer_Forum.Models;
 using Question_and_Answer_Forum.Services;
 
-namespace Question_and_Answer_Forum.App
+namespace Question_and_Answer_Forum.App.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -13,7 +13,7 @@ namespace Question_and_Answer_Forum.App
         public IQuestionService QuestionService { get; set; }
         public QuestionController(IQuestionService questionService)
         {
-            this.QuestionService = questionService;
+            QuestionService = questionService;
         }
 
         [HttpPost, Route("AddQuestion")]
@@ -26,7 +26,7 @@ namespace Question_and_Answer_Forum.App
         [HttpGet, Route("GetQuestionById/{questionId}")]
         public async Task<ActionResult<QuestionModel>> GetQuestionById(Guid questionId)
         {
-           QuestionModel question = await QuestionService.GetQuestionByIdAsync(questionId);
+            QuestionModel question = await QuestionService.GetQuestionByIdAsync(questionId);
             return Ok(question);
         }
 
@@ -51,17 +51,31 @@ namespace Question_and_Answer_Forum.App
             return Ok();
         }
 
-        [HttpGet("FilterQuestions/{show}/{sortBy}/{categoryId?}")]
-        public async Task<ActionResult<List<QuestionModel>>> FilterQuestions(string categoryId, string show, string sortBy)
+        [HttpGet, Route("GetQuestionsAskedByUser/{userId}")]
+        public async Task<ActionResult<List<QuestionModel>>> GetQuestionsAskedByUser(Guid userId)
         {
-            List<QuestionModel> questions = await QuestionService.FilterQuestionsAsync(categoryId, show, sortBy);
+            List<QuestionModel> questions = await QuestionService.GetQuestionsAskedByUserAsync(userId);
             return Ok(questions);
         }
 
-        [HttpGet, Route("SearchQuestionsByKeyword/{keyword}")]
-        public async Task<ActionResult<List<QuestionModel>>> SearchQuestionsByKeyword(string categoryId, string show, string sortBy, string keyword)
+        [HttpGet, Route("GetQuestionsAnsweredByUser/{userId}")]
+        public async Task<ActionResult<List<QuestionModel>>> GetQuestionsAnsweredByUser(Guid userId)
         {
-            List<QuestionModel> questions = await QuestionService.SearchQuestionsByKeywordAsync(categoryId, show, sortBy, keyword);
+            List<QuestionModel> questions = await QuestionService.GetQuestionsAnsweredByUserAsync(userId);
+            return Ok(questions);
+        }
+
+        [HttpGet("FilterQuestions/{categoryId}/{filterBy}/{timeSpan}/{signedUserId}")]
+        public async Task<ActionResult<List<QuestionModel>>> FilterQuestions(Guid categoryId, string filterBy, string timeSpan, Guid signedUserId)
+        {
+            List<QuestionModel> questions = await QuestionService.FilterQuestionsAsync(categoryId, filterBy, timeSpan, signedUserId);
+            return Ok(questions);
+        }
+
+        [HttpGet, Route("SearchQuestionsByKeyword/{categoryId}/{filterBy}/{timeSpan}/{signedUserId}/{keyword}")]
+        public async Task<ActionResult<List<QuestionModel>>> SearchQuestionsByKeyword(Guid categoryId, string filterBy, string timeSpan, Guid signedUserId, string keyword)
+        {
+            List<QuestionModel> questions = await QuestionService.SearchQuestionsByKeywordAsync(categoryId, filterBy, timeSpan, signedUserId, keyword);
             return Ok(questions);
         }
     }

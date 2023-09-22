@@ -12,6 +12,6 @@
         public int QuestionsAsked { get; set; }
         public int QuestionsAnswered { get; set; }
         public int QuestionsSolved { get; set; }
-        public string  ProfilePicture { get; set; }
+        public string ProfilePicture { get; set; }
     }
 }

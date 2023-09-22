@@ -1,7 +1,7 @@
 ﻿using Question_and_Answer_Forum.Data;
-using Question_and_Answer_Forum.DB;
 using Dapper;
 using Question_and_Answer_Forum.Models;
+using Question_and_Answer_Forum.Services.DbServices;
 
 namespace Question_and_Answer_Forum.Services
 {
@@ -56,36 +56,55 @@ namespace Question_and_Answer_Forum.Services
             }
         }
 
-        public async Task<List<QuestionModel>> FilterQuestionsAsync(string categoryId, string filterBy, string timeSpan)
+        public async Task<List<QuestionModel>> GetQuestionsAskedByUserAsync(Guid userId)
+        {
+            string query = "SELECT * FROM UserQuestionAnswerView WHERE RaisedBy = @userId";
+            using (var connection = DapperContext.CreateConnection())
+            {
+                IEnumerable<QuestionModel> questions = await connection.QueryAsync<QuestionModel>(query, new { userId });
+                return questions.ToList();
+            }
+        }
+
+        public async Task<List<QuestionModel>> GetQuestionsAnsweredByUserAsync(Guid userId)
+        {
+            string query = "SELECT * FROM UserQuestionAnswerView WHERE Id IN (SELECT DISTINCT A.QuestionId FROM Answers A WHERE A.AnsweredBy = @userId)";
+            using (var connection = DapperContext.CreateConnection())
+            {
+                IEnumerable<QuestionModel> questions = await connection.QueryAsync<QuestionModel>(query, new { userId });
+                return questions.ToList();
+            }
+        }
+
+        public async Task<List<QuestionModel>> FilterQuestionsAsync(Guid categoryId, string filterBy, string timeSpan, Guid signedUserId)
         {
 
             string query = "SELECT * From UserQuestionAnswerView WHERE 1 = 1";
-            string signedUserId = "92350C83-F855-EE11-98EB-C4CBE1103F30";
 
-            if (categoryId != "empty")
+            if (categoryId != Guid.Empty)
             {
-                query += $" AND CategoryId='{categoryId}' ";
+                query += $" AND CategoryId = '{categoryId}' ";
             }
 
-            if (filterBy == "solved")
+            if (filterBy == "Solved")
             {
-                query += $" AND IsSolved={1} ";
+                query += $" AND IsSolved = {1} ";
             }
-            else if (filterBy == "unsolved")
+            else if (filterBy == "Unsolved")
             {
-                query += $" AND IsSolved={0} ";
+                query += $" AND IsSolved = {0} ";
             }
-            else if (filterBy == "myquestions")
+            else if (filterBy == "My Questions")
             {
                 query += $" AND RaisedBy = '{signedUserId}' ";
             }
-            else if (filterBy == "myparticipation")
+            else if (filterBy == "My Participation")
             {
                 query += $" AND (RaisedBy = '{signedUserId}' OR Id in (SELECT DISTINCT A.QuestionId FROM Answers A WHERE A.AnsweredBy = '{signedUserId}')) ";
             }
-            else if (filterBy == "hot")
+            else if (filterBy == "Hot")
             {
-                query.Insert(7, " TOP 5 ");
+                query = query.Insert(7, " TOP 5 ");
                 query += " ORDER BY Views DESC ";
             }
 
@@ -109,9 +128,9 @@ namespace Question_and_Answer_Forum.Services
             }
         }
 
-        public async Task<List<QuestionModel>> SearchQuestionsByKeywordAsync(string categoryId, string filterBy, string timeSpan, string keyword)
+        public async Task<List<QuestionModel>> SearchQuestionsByKeywordAsync(Guid categoryId, string filterBy, string timeSpan, Guid signedUserId, string keyword)
         {
-            List<QuestionModel> questions = await FilterQuestionsAsync(categoryId, filterBy, timeSpan);
+            List<QuestionModel> questions = await FilterQuestionsAsync(categoryId, filterBy, timeSpan, signedUserId);
             questions = questions.Where(question => question.QuestionTitle.Contains(keyword) || question.Description.Contains(keyword)).ToList();
             return questions;
         }

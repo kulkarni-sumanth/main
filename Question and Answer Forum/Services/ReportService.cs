@@ -1,6 +1,6 @@
 ﻿using Question_and_Answer_Forum.Data;
-using Question_and_Answer_Forum.DB;
 using Dapper;
+using Question_and_Answer_Forum.Services.DbServices;
 
 namespace Question_and_Answer_Forum.Services
 {

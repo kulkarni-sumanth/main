@@ -1,7 +1,7 @@
 ﻿using Question_and_Answer_Forum.Data;
-using Question_and_Answer_Forum.DB;
 using Dapper;
 using Question_and_Answer_Forum.Models;
+using Question_and_Answer_Forum.Services.DbServices;
 
 namespace Question_and_Answer_Forum.Services
 {
@@ -34,10 +34,10 @@ namespace Question_and_Answer_Forum.Services
         public async Task<List<CategoryModel>> FilterCategoriesAsync(string filterBy)
         {
             string query = "SELECT * FROM CategoryQuestionView WHERE 1 = 1 ";
-            if (filterBy == "popular")
+            if (filterBy == "Popular")
             {
-                query.Insert(7, " TOP 5 ");
-                query += "ORDER BY NoOfQuestions DESC ";
+                query = query.Insert(7, " TOP 3 ");
+                query += "ORDER BY NumberOfQuestions DESC ";
             }
 
             using (var connection = Context.CreateConnection())
