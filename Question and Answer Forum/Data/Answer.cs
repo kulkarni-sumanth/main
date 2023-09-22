@@ -1,18 +1,16 @@
 ﻿using Microsoft.VisualBasic;
 
-namespace CorporateQnA.Data
+namespace Question_and_Answer_Forum.Data
 {
     public class Answer
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string AnswerDescription { get; set; }
         public int Likes { get; set; }
         public int DisLikes { get; set; }
         public bool IsBestSolution { get; set; }
         public DateTime AnsweredAt { get; set; }
-        public int QuestionId { get; set; }
-        public int UserId { get; set; }
+        public Guid QuestionId { get; set; }
+        public Guid AnsweredBy { get; set; }
     }
 }
-
-//addes an jdnu

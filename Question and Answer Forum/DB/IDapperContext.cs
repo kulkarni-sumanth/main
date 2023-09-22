@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.Common;
 
-namespace CorporateQnA.DB
+namespace Question_and_Answer_Forum.DB
 {
     public interface IDapperContext
     {

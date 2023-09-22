@@ -2,7 +2,7 @@
 using System.Data.Common;
 using System.Data.SqlClient;
 
-namespace CorporateQnA.DB
+namespace Question_and_Answer_Forum.DB
 {
     public class DapperContext : IDapperContext
     {

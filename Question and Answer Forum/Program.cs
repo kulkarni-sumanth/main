@@ -1,5 +1,8 @@
 using Question_and_Answer_Forum.DB;
 using Question_and_Answer_Forum.Services;
+//using Question_and_Answer_Forum.DB;
+using Question_and_Answer_Forum.Profiles;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IDapperContext,DapperContext>();
+
 builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<IAnswerService, AnswerService>();
+builder.Services.AddScoped<IQuestionService, QuestionService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IReportService, ReportService>();
+
+builder.Services.AddAutoMapper(typeof(UserProfile));
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
