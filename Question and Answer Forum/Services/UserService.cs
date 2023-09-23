@@ -17,14 +17,14 @@ namespace Question_and_Answer_Forum.Services
             this.Mapper = mapper;
         }
 
-        public async Task<UserModel> GetUserInfoAsync(Guid userId)
+        public async Task<UserModel> GetUserByIdAsync(Guid userId)
         {
             string queryToRetrieveUser = "SELECT UserId AS Id, Name, JobTitle, Department, Location, ProfilePicture FROM Users WHERE UserId = @UserId";
 
             using (var connection = Context.CreateConnection())
             {
                 User user = await connection.QuerySingleAsync<User>(queryToRetrieveUser, new { userId });
-                UserStats userStats = connection.QuerySingleOrDefault<UserStats>("GetStatsOfUser", new { userId }, commandType: CommandType.StoredProcedure);
+                var userStats = connection.QuerySingleOrDefault("GetStatsOfUser", new { userId }, commandType: CommandType.StoredProcedure);
 
                 UserModel userModel = Mapper.Map<UserModel>(user);
                 Mapper.Map(userStats, userModel);
@@ -43,7 +43,7 @@ namespace Question_and_Answer_Forum.Services
                 List<UserModel> users = new List<UserModel>();
                 foreach (Guid userId in UserIds)
                 {
-                    users.Add(await GetUserInfoAsync(userId));
+                    users.Add(await GetUserByIdAsync(userId));
                 }
                 return users;
             }

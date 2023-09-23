@@ -22,9 +22,27 @@ namespace Question_and_Answer_Forum.Services
             }
         }
 
+        public async Task RemoveLikeOfAnAnswerAsync(Guid answerId)
+        {
+            string query = "UPDATE Answers SET Likes = Likes - 1 WHERE AnswerId = @answerId";
+            using (var connection = Context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, new { answerId });
+            }
+        }
+
         public async Task DisLikeAnAnswerAsync(Guid answerId)
         {
-            string query = "UPDATE Answers SET Likes = Likes + 1 WHERE AnswerId = @answerId";
+            string query = "UPDATE Answers SET DisLikes = DisLikes + 1 WHERE AnswerId = @answerId";
+            using (var connection = Context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, new { answerId });
+            }
+        }
+
+        public async Task RemoveDisLikeOfAnAnswerAsync(Guid answerId)
+        {
+            string query = "UPDATE Answers SET DisLikes = DisLikes - 1 WHERE AnswerId = @answerId";
             using (var connection = Context.CreateConnection())
             {
                 await connection.ExecuteAsync(query, new { answerId });
@@ -39,6 +57,16 @@ namespace Question_and_Answer_Forum.Services
                 await connection.ExecuteAsync(query, answer);
             }
         }
+        public async Task<AnswerModel> GetAnswerByIdAsync(Guid answerId)
+        {
+            string query = "SELECT * UserAnswerView WHERE Id = @answerId";
+            using (var connection = Context.CreateConnection())
+            {
+                var answer = await connection.QuerySingleOrDefaultAsync<AnswerModel>(query, new { answerId });
+                return answer;
+            }
+        }
+
         public async Task<List<AnswerModel>> GetAnswersByQuestionIdAsync(Guid questionId)
         {
             string query = "SELECT * FROM UserAnswerView WHERE QuestionId = @questionId";

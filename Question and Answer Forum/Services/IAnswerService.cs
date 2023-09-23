@@ -7,9 +7,12 @@ namespace Question_and_Answer_Forum.Services
     {
         public Task AddAnswerAsync(Answer answer);
         public Task LikeAnAnswerAsync(Guid answerId);
+        public Task RemoveLikeOfAnAnswerAsync(Guid answerId);
         public Task DisLikeAnAnswerAsync(Guid answerId);
+        public Task RemoveDisLikeOfAnAnswerAsync(Guid answerId);
         public Task MarkAsBestSolutionAsync(Guid answerId);
         public Task UnMarkBestSolutionAsync(Guid answerId);
+        public Task<AnswerModel> GetAnswerByIdAsync(Guid answerId);
         public Task<List<AnswerModel>> GetAnswersByQuestionIdAsync(Guid questionId);
     }
 }

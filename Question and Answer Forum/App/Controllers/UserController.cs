@@ -14,10 +14,10 @@ namespace Question_and_Answer_Forum.App.Controllers
             UserService = userService;
         }
 
-        [HttpGet, Route("GetUserInfo/{userId}")]
-        public async Task<ActionResult<UserModel>> GetUserInfo(Guid userId)
+        [HttpGet, Route("GetUserById/{userId}")]
+        public async Task<ActionResult<UserModel>> GetUserById(Guid userId)
         {
-            UserModel user = await UserService.GetUserInfoAsync(userId);
+            UserModel user = await UserService.GetUserByIdAsync(userId);
             return Ok(user);
         }
 

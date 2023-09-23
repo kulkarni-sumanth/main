@@ -15,16 +15,28 @@ namespace Question_and_Answer_Forum.App.Controllers
             AnswerService = answerService;
         }
 
-        [HttpPost, Route("Like/{answerId}")]
+        [HttpPut, Route("LikeAnAnswer/{answerId}")]
         public async Task LikeAnAnswer(Guid answerId)
         {
             await AnswerService.LikeAnAnswerAsync(answerId);
         }
 
-        [HttpPost, Route("DisLike/{answerId}")]
+        [HttpPut, Route("RemoveLikeOfAnAnswer/{answerId}")]
+        public async Task RemoveLikeOfAnAnswer(Guid answerId)
+        {
+            await AnswerService.RemoveLikeOfAnAnswerAsync(answerId);
+        }
+
+        [HttpPut, Route("DisLikeAnAnswer/{answerId}")]
         public async Task DisLikeAnAnswer(Guid answerId)
         {
             await AnswerService.DisLikeAnAnswerAsync(answerId);
+        }
+
+        [HttpPut, Route("RemoveDisLikeOfAnAnswer/{answerId}")]
+        public async Task RemoveDisLikeOfAnAnswer(Guid answerId)
+        {
+            await AnswerService.RemoveDisLikeOfAnAnswerAsync(answerId);
         }
 
         [HttpPost, Route("AddAnswer")]
@@ -33,16 +45,23 @@ namespace Question_and_Answer_Forum.App.Controllers
             await AnswerService.AddAnswerAsync(answer);
         }
 
-        [HttpPost, Route("MarkAsBestSolution/{answerId}")]
+        [HttpPut, Route("MarkAsBestSolution/{answerId}")]
         public async Task MarkAsBestSolution(Guid answerId)
         {
             await AnswerService.MarkAsBestSolutionAsync(answerId);
         }
 
-        [HttpPost, Route("UnMarkBestSolution/{answerId}")]
+        [HttpPut, Route("UnMarkBestSolution/{answerId}")]
         public async Task UnMarkBestSolution(Guid answerId)
         {
             await AnswerService.UnMarkBestSolutionAsync(answerId);
+        }
+
+        [HttpGet, Route("GetAnswerById/{answerId}")]
+        public async Task<ActionResult<AnswerModel>> GetAnswerById(Guid answerId)
+        {
+            AnswerModel answer = await AnswerService.GetAnswerByIdAsync(answerId);
+            return Ok(answer);
         }
 
         [HttpGet, Route("GetAnswersByQuestionId/{questionId}")]

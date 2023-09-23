@@ -30,21 +30,21 @@ namespace Question_and_Answer_Forum.App.Controllers
             return Ok(question);
         }
 
-        [HttpPost, Route("VoteAQuestion/{questionId}")]
+        [HttpPut, Route("VoteAQuestion/{questionId}")]
         public async Task<ActionResult> VoteAQuestion(Guid questionId)
         {
             await QuestionService.VoteAQuestionAsync(questionId);
             return Ok();
         }
 
-        [HttpPost, Route("RemoveVoteForAQuestion/{questionId}")]
+        [HttpPut, Route("RemoveVoteForAQuestion/{questionId}")]
         public async Task<ActionResult> RemoveVoteForAQuestion(Guid questionId)
         {
             await QuestionService.RemoveVoteForAQuestionAsync(questionId);
             return Ok();
         }
 
-        [HttpPost, Route("IncrementViews/{questionId}")]
+        [HttpPut, Route("IncrementViews/{questionId}")]
         public async Task<ActionResult> IncrementViews(Guid questionId)
         {
             await QuestionService.IncrementViewsAsync(questionId);
